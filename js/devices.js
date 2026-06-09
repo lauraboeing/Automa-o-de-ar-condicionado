@@ -4,8 +4,6 @@ const devices = [
         nome: "Sala de Informática",
         online: true,
         ligado: false,
-        temperatura: 22,
-        velocidade: "Auto",
-        swing: false
+        temperatura: 23
     }
 ];

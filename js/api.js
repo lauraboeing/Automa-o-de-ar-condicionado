@@ -1,11 +1,43 @@
-async function ligarAr(id) {
-    console.log(`Ligando aparelho ${id}`);
+const ESP32_IP = "192.168.0.100";
+
+const API_URL = `http://${ESP32_IP}`;
+
+async function enviarComando(comando) {
+
+    try {
+
+        const resposta = await fetch(
+            `${API_URL}/${comando}`
+        );
+
+        return await resposta.text();
+
+    } catch (erro) {
+
+        console.error(
+            "Erro na comunicação:",
+            erro
+        );
+    }
 }
 
-async function desligarAr(id) {
-    console.log(`Desligando aparelho ${id}`);
-}
+async function obterStatus() {
 
-async function alterarTemperatura(id, temperatura) {
-    console.log(`Temperatura alterada para ${temperatura}°C`);
+    try {
+
+        const resposta = await fetch(
+            `${API_URL}/status`
+        );
+
+        return await resposta.json();
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao obter status:",
+            erro
+        );
+
+        return null;
+    }
 }
